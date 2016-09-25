@@ -17,6 +17,33 @@ object MyModule {
     println(formatAbs(-42))
 
     println(s"exercise 2.1: fib(10) = ${fib(10)}")
+
+    { // exercise 2.2
+      import PolymorphicFunctions.isSorted
+
+      val a1 = Array[Int](2, 3, 5, 7, 11, 13)
+      val a2 = Array[Double](1.1, 1.11, 1.111)
+      val b1 = Array[Int](2, 3, 5, 12, 11, 13)
+      val b2 = Array[Double](1.1, 1.1111, 1.111)
+
+      println(
+        s"""
+         |exercise 2.2:
+         |  ${a1.mkString("(", ", ", ")")} sorted? : ${isSorted(a1, (x: Int, y: Int) => x > y)}
+         |  ${a2.mkString("(", ", ", ")")} sorted? : ${isSorted(a2, (x: Double, y: Double) => x > y)}
+         |  ${b1.mkString("(", ", ", ")")} sorted? : ${isSorted(b1, (x: Int, y: Int) => x > y)}
+         |  ${b2.mkString("(", ", ", ")")} sorted? : ${isSorted(b2, (x: Double, y: Double) => x > y)}
+         |""".stripMargin)
+
+      println(
+        s"""
+         |exercise 2.2 (better signature):
+         |  ${a1.mkString("(", ", ", ")")} sorted? : ${isSorted(a1)((x, y) => x > y)}
+         |  ${a2.mkString("(", ", ", ")")} sorted? : ${isSorted(a2)((x, y) => x > y)}
+         |  ${b1.mkString("(", ", ", ")")} sorted? : ${isSorted(b1)((x, y) => x > y)}
+         |  ${b2.mkString("(", ", ", ")")} sorted? : ${isSorted(b2)((x, y) => x > y)}
+         |""".stripMargin)
+    }
   }
 
   // A definition of factorial, using a local, tail recursive function
@@ -145,7 +172,18 @@ object PolymorphicFunctions {
 
   // Exercise 2: Implement a polymorphic function to check whether
   // an `Array[A]` is sorted
-  def isSorted[A](as: Array[A], gt: (A,A) => Boolean): Boolean = ???
+  @annotation.tailrec
+  def isSorted[A](as: Array[A], gt: (A,A) => Boolean): Boolean = {
+    if (Seq(0, 1).contains(as.size)) true
+    else gt(as(1), as(0)) && isSorted(as.drop(1), gt)
+  }
+  // better signature to help pattern matching & type inference
+  @annotation.tailrec
+  def isSorted[A](as: Seq[A])(gt: (A,A) => Boolean): Boolean = as match {
+    case Nil => true
+    case a +: Nil => true
+    case a +: bs => gt(bs.head, a) && isSorted(bs)(gt)
+  }
 
   // Polymorphic functions are often so constrained by their type
   // that they only have one implementation! Here's an example:
