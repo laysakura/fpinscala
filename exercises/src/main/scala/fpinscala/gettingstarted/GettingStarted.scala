@@ -55,6 +55,17 @@ object MyModule {
            |  ${curry(mySum)(11)(31)}
          """.stripMargin)
     }
+
+    { // exercise 2.4
+      import PolymorphicFunctions.uncurry
+      val myAdder = (add: Int) => (added: Int) => add + added
+      println(
+        s"""
+           |exercise 2.4: 11 + 31 = ???
+           |  ${myAdder(11)(31)}
+           |  ${uncurry(myAdder)(11, 31)}
+         """.stripMargin)
+    }
   }
 
   // A definition of factorial, using a local, tail recursive function
@@ -214,8 +225,9 @@ object PolymorphicFunctions {
   // NB: The `Function2` trait has a `curried` method already
 
   // Exercise 4: Implement `uncurry`
-  def uncurry[A,B,C](f: A => B => C): (A, B) => C =
-    ???
+  def uncurry[A,B,C](f: A => B => C): (A, B) => C = {
+    (a: A, b: B) => f(a)(b)
+  }
 
   /*
   NB: There is a method on the `Function` object in the standard library,
