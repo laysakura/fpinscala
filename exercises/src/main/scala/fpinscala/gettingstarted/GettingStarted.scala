@@ -66,6 +66,18 @@ object MyModule {
            |  ${uncurry(myAdder)(11, 31)}
          """.stripMargin)
     }
+
+    { // exercise 2.5
+      import PolymorphicFunctions.compose
+      def upcaseStr(s: String): String = s.toUpperCase
+      def splitWords(s: String): Array[String] = s.split(" ")
+      println(
+        s"""
+           |exercise 2.5:
+           |  ${splitWords(upcaseStr("oh my god")).mkString("(^O^)")}
+           |  ${compose(splitWords, upcaseStr)("oh my god").mkString("(^O^)")}
+         """.stripMargin)
+    }
   }
 
   // A definition of factorial, using a local, tail recursive function
@@ -242,5 +254,5 @@ object PolymorphicFunctions {
   // Exercise 5: Implement `compose`
 
   def compose[A,B,C](f: B => C, g: A => B): A => C =
-    ???
+    (a: A) => f(g(a))
 }
