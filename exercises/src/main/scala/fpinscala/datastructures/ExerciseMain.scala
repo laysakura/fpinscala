@@ -60,5 +60,18 @@ object ExerciseMain {
            |  Drop elements whose value is less than 3 from $l3 => ${List.dropWhile(l3, (x: Int) => x < 3)}
          """.stripMargin)
     }
+
+    { // exercise 3.6
+      val l1 = List(1, 2, 3, 4)
+      val l2 = List(1)
+      val l3 = List()
+      println(
+        s"""
+           |exercise 3.6
+           |  Drop last element from $l1 => ${List.init(l1)}
+           |  Drop last element from $l2 => ${List.init(l2)}
+           |  Drop last element from $l3 => ${List.init(l3)}
+         """.stripMargin)
+    }
   }
 }
