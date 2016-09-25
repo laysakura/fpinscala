@@ -21,5 +21,18 @@ object ExerciseMain {
            |  Remove head from $l3 => ${List.tail(l3)}
          """.stripMargin)
     }
+
+    { // exercise 3.3
+      val l1 = List(1, 2, 3, 4)
+      val l2 = List(1)
+      val l3 = List()
+      println(
+        s"""
+           |exercise 3.3
+           |  Set head of $l1 into 42 => ${List.setHead(l1, 42)}
+           |  Set head of $l2 into 42 => ${List.setHead(l2, 42)}
+           |  Set head of $l3 into 42 => ${List.setHead(l3, 42)}
+         """.stripMargin)
+    }
   }
 }
