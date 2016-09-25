@@ -108,5 +108,16 @@ object ExerciseMain {
            |  ${List.foldLeft(List("a", "b", "c"), "PREFIX")((b, a) => b + a)}
          """.stripMargin)
     }
+
+    { // exercise 3.11
+      val l = List(1, 2, 3, 4)
+      println(
+        s"""
+           |exercise 3.11
+           |  Sum of $l => ${List.foldLeft(l, 0)((b, a) => b + a)}
+           |  Product of $l => ${List.foldLeft(l, 1)((b, a) => b * a)}
+           |  Length of $l => ${List.foldLeft(l, 0)((b, _) => b + 1)}
+         """.stripMargin)
+    }
   }
 }
