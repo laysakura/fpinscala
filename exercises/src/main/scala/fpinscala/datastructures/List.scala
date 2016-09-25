@@ -101,4 +101,11 @@ object List { // `List` companion object. Contains functions for creating and wo
     foldRight(xs, ys)((x_, ys_) => Cons(x_, ys_))
   def appendViaFoldLeft[A](xs: List[A], ys: List[A]): List[A] =
     foldLeft(List.reverse(xs), ys)((ys_, x_) => Cons(x_, ys_))
+
+  // exercise 3.15
+  def flatten[A](ls: List[List[A]]): List[A] = ls match {
+    case Nil => Nil
+    case Cons(l, ls_) => append(l, flatten(ls_))
+  }
+
 }

@@ -139,5 +139,14 @@ object ExerciseMain {
            |  Append $l2 to $l1 => ${List.appendViaFoldLeft(l1, l2)}
          """.stripMargin)
     }
+
+    { // exercise 3.15
+      val l = List(List(1, 2, 3), List(10, 20, 30), List(100, 200, 300))
+      println(
+        s"""
+           |exercise 3.15
+           |  Flatten $l => ${List.flatten(l)}
+         """.stripMargin)
+    }
   }
 }
