@@ -95,4 +95,10 @@ object List { // `List` companion object. Contains functions for creating and wo
   // exercise 3.12
   def reverse[A](l: List[A]): List[A] =
     foldLeft[A, List[A]](l, Nil)((as: List[A], a: A) => Cons(a, as))
+
+  // exercise 3.14
+  def appendViaFoldRight[A](xs: List[A], ys: List[A]): List[A] =
+    foldRight(xs, ys)((x_, ys_) => Cons(x_, ys_))
+  def appendViaFoldLeft[A](xs: List[A], ys: List[A]): List[A] =
+    foldLeft(List.reverse(xs), ys)((ys_, x_) => Cons(x_, ys_))
 }

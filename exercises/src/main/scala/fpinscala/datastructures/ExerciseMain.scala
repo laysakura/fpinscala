@@ -128,5 +128,16 @@ object ExerciseMain {
            |  Reverse of $l => ${List.reverse(l)}
          """.stripMargin)
     }
+
+    { // exercise 3.14
+      val l1 = List(1, 2, 3)
+      val l2 = List(33, 4)
+      println(
+        s"""
+           |exercise 3.14
+           |  Append $l2 to $l1 => ${List.appendViaFoldRight(l1, l2)}
+           |  Append $l2 to $l1 => ${List.appendViaFoldLeft(l1, l2)}
+         """.stripMargin)
+    }
   }
 }
