@@ -34,5 +34,18 @@ object ExerciseMain {
            |  Set head of $l3 into 42 => ${List.setHead(l3, 42)}
          """.stripMargin)
     }
+
+    { // exercise 3.4
+      val l1 = List(1, 2, 3, 4)
+      val l2 = List(1)
+      val l3 = List()
+      println(
+        s"""
+           |exercise 3.4
+           |  Drop first 2 elements from $l1 => ${List.drop(l1, 2)}
+           |  Drop first 2 elements from $l2 => ${List.drop(l2, 2)}
+           |  Drop first 2 elements from $l3 => ${List.drop(l3, 2)}
+         """.stripMargin)
+    }
   }
 }
