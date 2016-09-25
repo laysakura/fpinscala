@@ -44,6 +44,17 @@ object MyModule {
          |  ${b2.mkString("(", ", ", ")")} sorted? : ${isSorted(b2)((x, y) => x > y)}
          |""".stripMargin)
     }
+
+    { // exercise 2.3
+      import PolymorphicFunctions.curry
+      val mySum = (a: Int, b: Int) => a + b
+      println(
+        s"""
+           |exercise 2.3: 11 + 31 = ???
+           |  ${mySum(11, 31)}
+           |  ${curry(mySum)(11)(31)}
+         """.stripMargin)
+    }
   }
 
   // A definition of factorial, using a local, tail recursive function
@@ -195,8 +206,10 @@ object PolymorphicFunctions {
 
   // Note that `=>` associates to the right, so we could
   // write the return type as `A => B => C`
-  def curry[A,B,C](f: (A, B) => C): A => (B => C) =
-    ???
+  def curry[A,B,C](f: (A, B) => C): A => (B => C) = {
+    (a: A) => (b: B) => f(a, b)
+  }
+
 
   // NB: The `Function2` trait has a `curried` method already
 
