@@ -13,8 +13,72 @@ object MyModule {
     msg.format(x, abs(x))
   }
 
-  def main(args: Array[String]): Unit =
+  def main(args: Array[String]): Unit = {
     println(formatAbs(-42))
+
+    println(s"exercise 2.1: fib(10) = ${fib(10)}")
+
+    { // exercise 2.2
+      import PolymorphicFunctions.isSorted
+
+      val a1 = Array[Int](2, 3, 5, 7, 11, 13)
+      val a2 = Array[Double](1.1, 1.11, 1.111)
+      val b1 = Array[Int](2, 3, 5, 12, 11, 13)
+      val b2 = Array[Double](1.1, 1.1111, 1.111)
+
+      println(
+        s"""
+         |exercise 2.2:
+         |  ${a1.mkString("(", ", ", ")")} sorted? : ${isSorted(a1, (x: Int, y: Int) => x > y)}
+         |  ${a2.mkString("(", ", ", ")")} sorted? : ${isSorted(a2, (x: Double, y: Double) => x > y)}
+         |  ${b1.mkString("(", ", ", ")")} sorted? : ${isSorted(b1, (x: Int, y: Int) => x > y)}
+         |  ${b2.mkString("(", ", ", ")")} sorted? : ${isSorted(b2, (x: Double, y: Double) => x > y)}
+         |""".stripMargin)
+
+      println(
+        s"""
+         |exercise 2.2 (better signature):
+         |  ${a1.mkString("(", ", ", ")")} sorted? : ${isSorted(a1)((x, y) => x > y)}
+         |  ${a2.mkString("(", ", ", ")")} sorted? : ${isSorted(a2)((x, y) => x > y)}
+         |  ${b1.mkString("(", ", ", ")")} sorted? : ${isSorted(b1)((x, y) => x > y)}
+         |  ${b2.mkString("(", ", ", ")")} sorted? : ${isSorted(b2)((x, y) => x > y)}
+         |""".stripMargin)
+    }
+
+    { // exercise 2.3
+      import PolymorphicFunctions.curry
+      val mySum = (a: Int, b: Int) => a + b
+      println(
+        s"""
+           |exercise 2.3: 11 + 31 = ???
+           |  ${mySum(11, 31)}
+           |  ${curry(mySum)(11)(31)}
+         """.stripMargin)
+    }
+
+    { // exercise 2.4
+      import PolymorphicFunctions.uncurry
+      val myAdder = (add: Int) => (added: Int) => add + added
+      println(
+        s"""
+           |exercise 2.4: 11 + 31 = ???
+           |  ${myAdder(11)(31)}
+           |  ${uncurry(myAdder)(11, 31)}
+         """.stripMargin)
+    }
+
+    { // exercise 2.5
+      import PolymorphicFunctions.compose
+      def upcaseStr(s: String): String = s.toUpperCase
+      def splitWords(s: String): Array[String] = s.split(" ")
+      println(
+        s"""
+           |exercise 2.5:
+           |  ${splitWords(upcaseStr("oh my god")).mkString("(^O^)")}
+           |  ${compose(splitWords, upcaseStr)("oh my god").mkString("(^O^)")}
+         """.stripMargin)
+    }
+  }
 
   // A definition of factorial, using a local, tail recursive function
   def factorial(n: Int): Int = {
@@ -35,8 +99,10 @@ object MyModule {
   }
 
   // Exercise 1: Write a function to compute the nth fibonacci number
-
-  def fib(n: Int): Int = ???
+  def fib(n: Int): Int = {
+    if (Seq(0, 1).contains(n)) n
+    else fib(n-1) + fib(n-2)
+  }
 
   // This definition and `formatAbs` are very similar..
   private def formatFactorial(n: Int) = {
@@ -140,7 +206,18 @@ object PolymorphicFunctions {
 
   // Exercise 2: Implement a polymorphic function to check whether
   // an `Array[A]` is sorted
-  def isSorted[A](as: Array[A], gt: (A,A) => Boolean): Boolean = ???
+  @annotation.tailrec
+  def isSorted[A](as: Array[A], gt: (A,A) => Boolean): Boolean = {
+    if (Seq(0, 1).contains(as.size)) true
+    else gt(as(1), as(0)) && isSorted(as.drop(1), gt)
+  }
+  // better signature to help pattern matching & type inference
+  @annotation.tailrec
+  def isSorted[A](as: Seq[A])(gt: (A,A) => Boolean): Boolean = as match {
+    case Nil => true
+    case a +: Nil => true
+    case a +: bs => gt(bs.head, a) && isSorted(bs)(gt)
+  }
 
   // Polymorphic functions are often so constrained by their type
   // that they only have one implementation! Here's an example:
@@ -152,14 +229,17 @@ object PolymorphicFunctions {
 
   // Note that `=>` associates to the right, so we could
   // write the return type as `A => B => C`
-  def curry[A,B,C](f: (A, B) => C): A => (B => C) =
-    ???
+  def curry[A,B,C](f: (A, B) => C): A => (B => C) = {
+    (a: A) => (b: B) => f(a, b)
+  }
+
 
   // NB: The `Function2` trait has a `curried` method already
 
   // Exercise 4: Implement `uncurry`
-  def uncurry[A,B,C](f: A => B => C): (A, B) => C =
-    ???
+  def uncurry[A,B,C](f: A => B => C): (A, B) => C = {
+    (a: A, b: B) => f(a)(b)
+  }
 
   /*
   NB: There is a method on the `Function` object in the standard library,
@@ -174,5 +254,5 @@ object PolymorphicFunctions {
   // Exercise 5: Implement `compose`
 
   def compose[A,B,C](f: B => C, g: A => B): A => C =
-    ???
+    (a: A) => f(g(a))
 }
