@@ -84,5 +84,18 @@ object ExerciseMain {
            |    ${List.foldRight(List(1, 2, 3), List(42))(Cons(_, _))}
          """.stripMargin)
     }
+
+    { // exercise 3.9
+      val l1 = List(1, 2, 3, 4)
+      val l2 = List(1)
+      val l3 = List()
+      println(
+        s"""
+           |exercise 3.9
+           |  Length of $l1 => ${List.length(l1)}
+           |  Length of $l2 => ${List.length(l2)}
+           |  Length of $l3 => ${List.length(l3)}
+         """.stripMargin)
+    }
   }
 }
