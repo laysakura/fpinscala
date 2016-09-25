@@ -69,7 +69,11 @@ object List { // `List` companion object. Contains functions for creating and wo
     }
   }
 
-  def dropWhile[A](l: List[A], f: A => Boolean): List[A] = sys.error("todo")
+  @annotation.tailrec
+  def dropWhile[A](l: List[A], f: A => Boolean): List[A] = l match {
+    case Nil => Nil
+    case Cons(x, xs) => if (f(x)) dropWhile(xs, f) else l
+  }
 
   def init[A](l: List[A]): List[A] = sys.error("todo")
 
