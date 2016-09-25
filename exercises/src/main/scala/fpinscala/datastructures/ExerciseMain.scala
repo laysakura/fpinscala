@@ -73,5 +73,16 @@ object ExerciseMain {
            |  Drop last element from $l3 => ${List.init(l3)}
          """.stripMargin)
     }
+
+    { // exercise 3.8
+      println(
+        s"""
+           |exercise 3.8
+           |  foldRight with z=Nil, f=Cons should result in as.
+           |    ${List.foldRight(List(1, 2, 3), Nil: List[Int])(Cons(_, _))}
+           |  foldRight with z=List(42), f=Cons should append 42 to as.
+           |    ${List.foldRight(List(1, 2, 3), List(42))(Cons(_, _))}
+         """.stripMargin)
+    }
   }
 }
