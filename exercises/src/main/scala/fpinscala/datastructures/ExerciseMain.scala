@@ -97,5 +97,16 @@ object ExerciseMain {
            |  Length of $l3 => ${List.length(l3)}
          """.stripMargin)
     }
+
+    { // exercise 3.10
+      val l1 = List(1, 2, 3, 4)
+      val l2 = List(1)
+      val l3 = List()
+      println(
+        s"""
+           |exercise 3.10
+           |  ${List.foldLeft(List("a", "b", "c"), "PREFIX")((b, a) => b + a)}
+         """.stripMargin)
+    }
   }
 }
