@@ -119,5 +119,14 @@ object ExerciseMain {
            |  Length of $l => ${List.foldLeft(l, 0)((b, _) => b + 1)}
          """.stripMargin)
     }
+
+    { // exercise 3.12
+      val l = List(1, 2, 3, 4)
+      println(
+        s"""
+           |exercise 3.12
+           |  Reverse of $l => ${List.reverse(l)}
+         """.stripMargin)
+    }
   }
 }
