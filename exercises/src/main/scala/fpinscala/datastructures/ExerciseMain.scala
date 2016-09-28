@@ -148,5 +148,16 @@ object ExerciseMain {
            |  Flatten $l => ${List.flatten(l)}
          """.stripMargin)
     }
+
+    { // exercise 3.16
+      def plus1(xs: List[Int]): List[Int] = List.map(xs)(_ + 1)
+
+      val l = List(1, 2, 3)
+      println(
+        s"""
+           |exercise 3.16
+           |  +1 to each element of $l => ${plus1(l)}
+         """.stripMargin)
+    }
   }
 }
