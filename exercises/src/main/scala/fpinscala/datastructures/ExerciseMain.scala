@@ -159,5 +159,16 @@ object ExerciseMain {
            |  +1 to each element of $l => ${plus1(l)}
          """.stripMargin)
     }
+
+    { // exercise 3.17
+      def d2s(xs: List[Double]): List[String] = List.map(xs)(_.toString)
+
+      val l = List(1.14, 2.14, 3.14)
+      println(
+        s"""
+           |exercise 3.17
+           |  Each double element of $l into String => ${d2s(l)}
+         """.stripMargin)
+    }
   }
 }
