@@ -181,5 +181,14 @@ object ExerciseMain {
            |  Filter-out odd element from $l => ${List.filter(l)(_ % 2 == 0)}
          """.stripMargin)
     }
+
+    { // exercise 3.20
+      val l = List(1, 2, 3)
+      println(
+        s"""
+           |exercise 3.20
+           |  Dup & Stringify each element of $l => ${List.flatMap(l)(x => List(x.toString, x.toString))}
+         """.stripMargin)
+    }
   }
 }
