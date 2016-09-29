@@ -170,5 +170,16 @@ object ExerciseMain {
            |  Each double element of $l into String => ${d2s(l)}
          """.stripMargin)
     }
+
+    // exercise 3.18: already done in 3.16
+
+    { // exercise 3.19
+      val l = List(1, 2, 3, 4, 5)
+      println(
+        s"""
+           |exercise 3.19
+           |  Filter-out odd element from $l => ${List.filter(l)(_ % 2 == 0)}
+         """.stripMargin)
+    }
   }
 }

@@ -111,4 +111,9 @@ object List { // `List` companion object. Contains functions for creating and wo
     case Cons(l, ls_) => append(l, flatten(ls_))
   }
 
+  // exercise 3.19
+  def filter[A](l: List[A])(f: A => Boolean): List[A] = l match {
+    case Nil => Nil
+    case Cons(x, xs) => if (f(x)) Cons(x, filter(xs)(f)) else filter(xs)(f)
+  }
 }
