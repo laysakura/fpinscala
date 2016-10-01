@@ -244,5 +244,13 @@ object ExerciseMain {
            |  Max of the tree => ${Tree.maximum(root)}
          """.stripMargin)
     }
+
+    { // exercise 3.27
+      println(
+        s"""
+           |exercise 3.27
+           |  Depth of the tree => ${Tree.depth(root)}
+         """.stripMargin)
+    }
   }
 }
