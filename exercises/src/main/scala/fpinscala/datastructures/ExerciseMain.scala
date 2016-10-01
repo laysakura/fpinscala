@@ -252,5 +252,13 @@ object ExerciseMain {
            |  Depth of the tree => ${Tree.depth(root)}
          """.stripMargin)
     }
+
+    { // exercise 3.28
+      println(
+        s"""
+           |exercise 3.28
+           |  +1 to $root => ${Tree.map(root)(_ + 1)}
+         """.stripMargin)
+    }
   }
 }
