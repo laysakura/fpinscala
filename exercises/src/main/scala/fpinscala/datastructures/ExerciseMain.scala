@@ -214,9 +214,9 @@ object ExerciseMain {
 
     // -------------
 
-    // 5 --- 4
+    // A --- 4
     //    |
-    //    -- 3 --- 8 --- 2
+    //    -- B --- C --- 2
     //          |     |
     //          |     -- 1
     //          -- 9
@@ -224,16 +224,24 @@ object ExerciseMain {
     val t1 = Leaf(1)
     val t9 = Leaf(9)
     val t4 = Leaf(4)
-    val t8 = Branch(t1, t2)
-    val t3 = Branch(t9, t8)
-    val t5 = Branch(t3, t4)
-    val root = t5
+    val tC = Branch(t1, t2)
+    val tB = Branch(t9, tC)
+    val tA = Branch(tB, t4)
+    val root = tA
 
     { // exercise 3.25
       println(
         s"""
            |exercise 3.25
            |  Size of the tree => ${Tree.size(root)}
+         """.stripMargin)
+    }
+
+    { // exercise 3.26
+      println(
+        s"""
+           |exercise 3.26
+           |  Max of the tree => ${Tree.maximum(root)}
          """.stripMargin)
     }
   }
