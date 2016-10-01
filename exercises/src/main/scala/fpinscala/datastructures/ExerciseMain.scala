@@ -200,13 +200,13 @@ object ExerciseMain {
          """.stripMargin)
     }
 
-    { // exercise 3.22
+    { // exercise 3.22 & 3.23
       val l1 = List(1, 2, 3)
-      val l2 = List(4, 5, 6)
+      val l2 = List(4.0, 5.0, 6.0)
       println(
         s"""
-           |exercise 3.22
-           |  Zip-add each element from $l1 & $l2 => ${List.zipAdd(l1, l2)((x, y) => x + y)}
+           |exercise 3.22 & 3.23
+           |  Zip-add each element from $l1 & $l2 => ${List.zipWith(l1, l2)((x, y) => x + y)}
          """.stripMargin)
     }
   }
