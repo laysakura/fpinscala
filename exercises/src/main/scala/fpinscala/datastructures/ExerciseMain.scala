@@ -209,5 +209,7 @@ object ExerciseMain {
            |  Zip-add each element from $l1 & $l2 => ${List.zipWith(l1, l2)((x, y) => x + y)}
          """.stripMargin)
     }
+
+    // exercise 3.24 : TODO
   }
 }
