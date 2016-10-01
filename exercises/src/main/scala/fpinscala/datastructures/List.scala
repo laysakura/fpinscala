@@ -122,4 +122,8 @@ object List { // `List` companion object. Contains functions for creating and wo
     case Nil => Nil
     case Cons(x, xs) => append(f(x), flatMap(xs)(f))
   }
+
+  // exercise 3.21
+  def filterViaFlatMap[A](l: List[A])(f: A => Boolean): List[A] =
+    flatMap(l)(a => if (f(a)) List(a) else Nil)
 }
