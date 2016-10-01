@@ -260,5 +260,7 @@ object ExerciseMain {
            |  +1 to $root => ${Tree.map(root)(_ + 1)}
          """.stripMargin)
     }
+
+    // exercise 3.29 TODO
   }
 }
