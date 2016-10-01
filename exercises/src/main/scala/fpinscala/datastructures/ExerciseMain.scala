@@ -199,5 +199,15 @@ object ExerciseMain {
            |  Filter-out odd element from $l => ${List.filterViaFlatMap(l)(_ % 2 == 0)}
          """.stripMargin)
     }
+
+    { // exercise 3.22
+      val l1 = List(1, 2, 3)
+      val l2 = List(4, 5, 6)
+      println(
+        s"""
+           |exercise 3.22
+           |  Zip-add each element from $l1 & $l2 => ${List.zipAdd(l1, l2)((x, y) => x + y)}
+         """.stripMargin)
+    }
   }
 }

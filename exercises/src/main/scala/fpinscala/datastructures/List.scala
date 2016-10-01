@@ -126,4 +126,11 @@ object List { // `List` companion object. Contains functions for creating and wo
   // exercise 3.21
   def filterViaFlatMap[A](l: List[A])(f: A => Boolean): List[A] =
     flatMap(l)(a => if (f(a)) List(a) else Nil)
+
+  // exercise 3.22
+  def zipAdd[A](l1: List[A], l2: List[A])(adder: (A, A) => A): List[A] = (l1, l2) match {
+    case (Nil, _) => Nil
+    case (_, Nil) => Nil
+    case (Cons(x, xs), Cons(y, ys)) => Cons(adder(x, y), zipAdd(xs, ys)(adder))
+  }
 }
