@@ -211,5 +211,30 @@ object ExerciseMain {
     }
 
     // exercise 3.24 : TODO
+
+    // -------------
+
+    // 5 --- 4
+    //    |
+    //    -- 3 --- 8 --- 2
+    //          |     |
+    //          |     -- 1
+    //          -- 9
+    val t2 = Leaf(2)
+    val t1 = Leaf(1)
+    val t9 = Leaf(9)
+    val t4 = Leaf(4)
+    val t8 = Branch(t1, t2)
+    val t3 = Branch(t9, t8)
+    val t5 = Branch(t3, t4)
+    val root = t5
+
+    { // exercise 3.25
+      println(
+        s"""
+           |exercise 3.25
+           |  Size of the tree => ${Tree.size(root)}
+         """.stripMargin)
+    }
   }
 }
